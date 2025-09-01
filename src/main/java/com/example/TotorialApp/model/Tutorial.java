@@ -3,6 +3,8 @@ package com.example.TotorialApp.model;
 // import javax.persistence.*; // for Spring Boot 2
 import jakarta.persistence.*; // for Spring Boot 3
 
+import java.util.Arrays;
+
 @Entity
 @Table(name = "tutorials")
 public class Tutorial {
@@ -20,6 +22,16 @@ public class Tutorial {
     @Column(name = "published")
     private boolean published;
 
+    @Lob
+    @Column(name = "image", columnDefinition = "LONGTEXT")
+    private String imageContent;
+
+
+
+    @Lob
+    @Column(name = "pdf", columnDefinition = "LONGTEXT")
+    private String pdfContent;
+
     public Tutorial() {
 
     }
@@ -28,6 +40,28 @@ public class Tutorial {
         this.title = title;
         this.description = description;
         this.published = published;
+    }
+    public Tutorial(String title, String description, boolean published, String imageContent) {
+        this.title = title;
+        this.description = description;
+        this.published = published;
+        this.imageContent = imageContent;
+    }
+
+    public Tutorial(String title, String description, boolean published, String imageContent, String pdfContent) {
+        this.title = title;
+        this.description = description;
+        this.published = published;
+        this.imageContent = imageContent;
+        this.pdfContent = pdfContent;
+    }
+
+    public String getPdfContent() {
+        return pdfContent;
+    }
+
+    public void setPdfContent(String pdfContent) {
+        this.pdfContent = pdfContent;
     }
 
     public long getId() {
@@ -62,8 +96,23 @@ public class Tutorial {
         this.published = published;
     }
 
+    public String getImageContent() {
+        return imageContent;
+    }
+
+    public void setImageContent(String imageContent) {
+        this.imageContent = imageContent;
+    }
+
     @Override
     public String toString() {
-        return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
+        return "Tutorial{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", published=" + published +
+                ", imageContent='" + imageContent + '\'' +
+                ", pdfContent='" + pdfContent + '\'' +
+                '}';
     }
 }
