@@ -32,6 +32,7 @@ public class Tutorial {
     @Column(name = "pdf", columnDefinition = "LONGTEXT")
     private String pdfContent;
 
+
     public Tutorial() {
 
     }
